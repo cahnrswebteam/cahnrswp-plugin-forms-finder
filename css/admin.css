@@ -1,0 +1,29 @@
+/* CSS Document */
+#cahnrswp-forms-settings label {
+	display: block;
+	font-weight: bold;
+	padding: 0.25rem 0;
+}
+
+#cahnrswp-forms-settings input[type="text"] {
+	height: 40px;
+	line-height: 40px;
+	text-indent: 0.5rem;
+	font-size: 1.1rem;
+	width: 100%;
+}
+
+#cahnrswp-forms-settings .cahnrswp-forms-helper-text {
+	padding: 0.25rem 0;
+	color: #777;
+	display: block;
+}
+
+#cahnrswp-forms-settings .cahnrswp-forms-field {
+	padding: 0.5rem 0;
+}
+
+#cahnrswp-forms-settings textarea {
+	width: 100%;
+	height: 6rem;
+}
