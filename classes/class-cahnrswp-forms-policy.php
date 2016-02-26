@@ -10,7 +10,7 @@ class CAHNRSWP_Forms_Policy extends CAHNRSWP_Forms_Post_Type {
 	
 	protected $url = 'policy';
 	
-	protected $label = 'Policies';
+	protected $label = 'FS - Policies';
 	
 	protected $desc = 'Index Policies.';
 	

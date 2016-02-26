@@ -63,6 +63,8 @@ class CAHNRSWP_Forms_Finder {
 		require_once 'classes/class-cahnrswp-forms-forms.php';
 		require_once 'classes/class-cahnrswp-forms-display.php';
 		require_once 'classes/class-cahnrswp-forms-topics.php';
+		require_once 'classes/class-cahnrswp-forms-ajax.php';
+		require_once 'classes/class-cahnrswp-forms-finder-terms.php';
 		
 		$this->how_to = new CAHNRSWP_Forms_How_To();
 		$this->policy = new CAHNRSWP_Forms_Policy();
@@ -70,6 +72,7 @@ class CAHNRSWP_Forms_Finder {
 		$this->forms = new CAHNRSWP_Forms_Forms();
 		$this->display = new CAHNRSWP_Forms_Display();
 		$this->topics = new CAHNRSWP_Forms_Topics();
+		
 		
 		$this->how_to->init();
 		$this->policy->init();
@@ -79,6 +82,8 @@ class CAHNRSWP_Forms_Finder {
 		
 		$shortcodes = new CAHNRSWP_Forms_Shortcodes();
 		$shortcodes->add_shortcodes();
+		
+		$ajax = new CAHNRSWP_Forms_Ajax();
 		
 		if ( is_admin() ){
 			
@@ -107,6 +112,8 @@ class CAHNRSWP_Forms_Finder {
 	public function add_public_scripts(){
 		
 		wp_enqueue_style( 'cahnrswp_forms_public_css' , plugin_dir_url( __FILE__ ) . '/css/public.css' , false , '0.0.1' );  
+		
+		wp_enqueue_script( 'cahnrswp_forms_public_script' , plugin_dir_url( __FILE__ ) . '/js/script.js' , false , '0.0.1' , true ); 
 		
 	} // end add_admin_scripts
 	

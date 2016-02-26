@@ -6,7 +6,7 @@
  */
 class CAHNRSWP_Forms_Topics {
 	
-	private $slug = 'findertopic';
+	private $slug = 'admin_topics';
 	
 	/**
 	 * Get post type slug
@@ -29,9 +29,9 @@ class CAHNRSWP_Forms_Topics {
 	public function add_taxonomy(){
 		
 		$args = array(
-			'label'              => 'Library Topics',
+			'label'              => 'Admin Topics',
 			'description'        => 'Topics for forms ,policies, and resources.',
-			'rewrite'            => array( 'slug' => 'topics' ),
+			'rewrite'            => array( 'slug' => 'admin-topics' ),
 			'hierarchical'       => true,
 		);
 	

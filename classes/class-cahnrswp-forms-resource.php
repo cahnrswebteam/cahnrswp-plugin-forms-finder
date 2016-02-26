@@ -10,7 +10,7 @@ class CAHNRSWP_Forms_Resource extends CAHNRSWP_Forms_Post_Type {
 	
 	protected $url = 'resource';
 	
-	protected $label = 'Resources';
+	protected $label = 'FS - Resources';
 	
 	protected $desc = 'Index Resources.';
 	

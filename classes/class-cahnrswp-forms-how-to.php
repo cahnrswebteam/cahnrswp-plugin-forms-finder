@@ -10,7 +10,7 @@ class CAHNRSWP_Forms_How_To extends CAHNRSWP_Forms_Post_Type {
 	
 	protected $url = 'how-to';
 	
-	protected $label = 'How-To/Guide';
+	protected $label = 'FS - Tutorials';
 	
 	protected $desc = 'Tutorials or How-to Guides.';
 	

@@ -17,7 +17,9 @@ class CAHNRSWP_Forms_Shortcodes {
 		
 		add_shortcode( 'form_finder_library' , array( $this , 'get_form_finder_library' ) );
 		
-	} // end add add_taxonomy
+		add_shortcode( 'form_finder_topics' , array( $this , 'get_form_finder_topics' ) );
+		
+	} // end add add_taxonomy 
 	
 	/**
 	 * Adds Topic Gallery Shortcode
@@ -54,11 +56,15 @@ class CAHNRSWP_Forms_Shortcodes {
 			
 			$html .= '</nav>';
 			
-			$html .= '<fieldset class="cahnrswp-form-finder-section" data-type="search">';
+			$html .= '<fieldset class="cahnrswp-form-finder-section active" data-type="search">';
 			
-				$html .= '<div class="cahnrswp-field">';
+				$html .= '<div class="cahnrswp-field cahnrswp-search-field">';
 				
-					$html .= '<input type="text" value="" name="" placeholder="Search Forms, Policies & Resources" />';
+					$html .= '<input class="cahnrs-search" type="text" value="" name="" placeholder="Search Forms, Policies & Resources" />';
+				
+				$html .= '</div>';
+				
+				$html .='<div class="cahnrswp-form-finder-results">';
 				
 				$html .= '</div>';
 			
@@ -71,8 +77,16 @@ class CAHNRSWP_Forms_Shortcodes {
 			$html .= '<fieldset class="cahnrswp-form-finder-section" data-type="a-z-index">';
 			
 			$html .= '</fieldset>';
+			
+			$html .= '<script type="text/javascript">var ajaxurl = "' . get_site_url() . '/wp-admin/admin-ajax.php";</script>';
 		
 		$html .= '</form>';
+		
+		require_once 'class-cahnrswp-forms-finder-topics.php';
+		
+		$topics = new CAHNRSWP_Forms_Finder_Topics();
+		
+		$html .= $topics->get_topics( 'admin_topics' , array() , 'cahnrswp-shortcode' );
 		
 		return $html;
 		
@@ -112,9 +126,9 @@ class CAHNRSWP_Forms_Shortcodes {
 	
 	public function get_sections( $term_slug ){
 		
-		$term = get_term_by( 'slug' , $term_slug , 'findertopic');
+		$term = get_term_by( 'slug' , $term_slug , 'admin_topics');
 		
-		$children = get_term_children( $term->term_id, 'findertopic' );
+		$children = get_term_children( $term->term_id, 'admin_topics' );
 		
 		$term_children = array();
 		
@@ -130,13 +144,13 @@ class CAHNRSWP_Forms_Shortcodes {
 	
 	public function get_child( $id ){
 		
-		$term = get_term( $id , 'findertopic' );
+		$term = get_term( $id , 'admin_topics' );
 		
 		$fs_query_args = array(
 			'post_type' => 'any',
 			'tax_query' => array(
 				array(
-					'taxonomy' => 'findertopic',
+					'taxonomy' => 'admin_topics',
 					'field'    => 'id',
 					'terms'    => $id,
 				),
@@ -216,6 +230,9 @@ class CAHNRSWP_Forms_Shortcodes {
 		return $html;
 		
 	} // end get_basic_display
+	
+	public function get_form_finder_topics( $atts ){
+	} // end get_form_finder_topics( $atts )
 	
 	
 } // end CAHNRSWP_Forms_Topics

@@ -10,7 +10,7 @@ class CAHNRSWP_Forms_Forms extends CAHNRSWP_Forms_Post_Type {
 	
 	protected $url = 'forms';
 	
-	protected $label = 'Forms';
+	protected $label = 'FS - Forms';
 	
 	protected $desc = 'Web based or file forms.';
 	
