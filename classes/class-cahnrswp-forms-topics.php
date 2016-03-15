@@ -35,7 +35,7 @@ class CAHNRSWP_Forms_Topics {
 			'hierarchical'       => true,
 		);
 	
-		register_taxonomy( $this->get_slug(), array('how_to','policy','resource' ), $args );
+		register_taxonomy( $this->get_slug(), array('how_to','policy','resource','forms' ), $args );
 		
 	} // end add add_taxonomy
 	

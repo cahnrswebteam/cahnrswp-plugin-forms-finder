@@ -90,7 +90,7 @@ class CAHNRSWP_Forms_Post_Type extends CAHNRSWP_Forms_Save {
 			'has_archive'        => true,
 			'hierarchical'       => true,
 			'supports'           => array( 'title', 'editor', 'author', 'thumbnail'),
-			'taxonomies'         => array('post_tag','unit_topic'),
+			'taxonomies'         => array('post_tag','admin_topics','category'),
 		);
 	
 		register_post_type( $this->get_slug(), $args );
@@ -110,13 +110,39 @@ class CAHNRSWP_Forms_Post_Type extends CAHNRSWP_Forms_Save {
 		
 			$html = '<fieldset id="cahnrswp-forms-settings">';
 			
-				$html .= '<div class="cahnrswp-forms-field">';
+				$html .= '<div class="cahnrswp-forms-field cahnrswp-forms-source">';
 					
 					$html .= '<label>Document/Resource URL (Optional)</label>';
 					
 					$html .= '<input type="text" name="_cahnrswp_forms_redirect" value="' . $settings['_cahnrswp_forms_redirect'] . '" placeholder="Document or webpage address" />';
 					
 					$html .= '<span class="cahnrswp-forms-helper-text">If the document or webpage is not located on this site, use this fieldto redirect visitors to the resource.</span>';
+			
+				$html .= '</div>';
+				
+				$html .= '<div class="cahnrswp-forms-field cahnrswp-forms-get-documents">';
+					
+					$html .= '<label>Load Document</label>';
+					
+					$documents = $this->get_document_revisions( $post );
+					
+					$disable = ( $documents )? '' : 'disabled';
+					
+					$html .= '<select ' . $disable . '>';
+					
+						$html .= '<option value="">Select</option>';
+						
+						if ( $documents ){
+							
+							foreach( $documents as $did => $document ){
+								
+								$html .= '<option value="' . $document['url'] . '">' . $document['title'] . '</option>';
+								
+							} // end foreach
+							
+						} // end if
+					
+					$html .= '</select>';
 			
 				$html .= '</div>';
 				
@@ -151,6 +177,27 @@ class CAHNRSWP_Forms_Post_Type extends CAHNRSWP_Forms_Save {
 		$this->update_meta( $post_id , $settings );
 		
 	} // end save
+	
+	/**
+	 * Gets documents post type
+	 * @param object $post WP Post Obejct
+	 * @return array post_id => array('title' => '','url'=>'' ) 
+	 */
+	private function get_document_revisions( $c_post ){
+		
+		$documents = array();
+		
+		$posts = get_posts( array( 'post_type' => 'document' , 'posts_per_page' => -1 ) );
+		
+		foreach( $posts as $post ){
+			
+			$documents[ $post->ID ] = array( 'title' => $post->post_title , 'url' => get_permalink( $post ) );
+			
+		}
+		
+		return $documents;
+		
+	} // end get_document_revisions
 	
 	/**
 	 * Redirects page based on field

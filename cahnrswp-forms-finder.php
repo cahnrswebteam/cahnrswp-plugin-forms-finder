@@ -104,6 +104,8 @@ class CAHNRSWP_Forms_Finder {
 		
 		wp_enqueue_style( 'cahnrswp_forms_admin_css' , plugin_dir_url( __FILE__ ) . '/css/admin.css' , false , '0.0.1' );  
 		
+		wp_enqueue_script( 'cahnrswp_forms_admin_js' , plugin_dir_url( __FILE__ ) . '/js/admin.js' , false , '0.0.1' , true );
+		
 	} // end add_admin_scripts
 	
 	/**

@@ -82,12 +82,6 @@ class CAHNRSWP_Forms_Shortcodes {
 		
 		$html .= '</form>';
 		
-		require_once 'class-cahnrswp-forms-finder-topics.php';
-		
-		$topics = new CAHNRSWP_Forms_Finder_Topics();
-		
-		$html .= $topics->get_topics( 'admin_topics' , array() , 'cahnrswp-shortcode' );
-		
 		return $html;
 		
 	} // end get_form_finder
@@ -232,6 +226,15 @@ class CAHNRSWP_Forms_Shortcodes {
 	} // end get_basic_display
 	
 	public function get_form_finder_topics( $atts ){
+		
+		require_once 'class-cahnrswp-forms-finder-topics.php';
+		
+		$topics = new CAHNRSWP_Forms_Finder_Topics();
+		
+		$html = $topics->get_topics( 'admin_topics' , array() , 'cahnrswp-shortcode' );
+		
+		return $html;
+		
 	} // end get_form_finder_topics( $atts )
 	
 	
